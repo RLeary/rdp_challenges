@@ -35,10 +35,18 @@ def divide(x, y):
     if y == 0
        cant divide by 0
 
+# x to the y
+def exponent(x, y):
+    # do multiply(x, x) y times?
+    result = 0
+    if y == 0:
+        result = 1
+        return result
+    for i in range(y):
+        result = multiply(x, x)
+    return result
+
 #put in "main" block
 # check if answer is int
 if not ininstance(<var>, int):
     return non-int
-# check for /0
-if x == 0 and y == 0 and operand == '/':
- return not defined

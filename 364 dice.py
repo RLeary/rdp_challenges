@@ -42,9 +42,10 @@ def roll(sides):
     return result
 
 while True:
-# add input validation - regex? int'd'int
 #    dice = input("Enter the dice as xdy, eg 4d6: ").split('d')
-    dice_input = ''
+    dice_input = input("Enter the dice as xdy, eg 4d6: ")
+    # input validation sometimes keeps error message in buffer and sidplays
+    # for 1st correct input after incorrect and vice versa
     while not re.match("^[0-9]*d[0-9]*$", dice_input):
         dice_input = input("Enter the dice as xdy, eg 4d6: ")
         print("Error: dice must be of format xdy, eg 4d6") # always printing error message

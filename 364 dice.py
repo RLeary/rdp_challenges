@@ -34,20 +34,24 @@ Challenge Input
 100d100
 """
 
-import random
+import random, re
 
 # Roll a single dice
 def roll(sides):
     result = random.randint(1, sides)
     return result
 
-# print(roll(40))
-
 while True:
-    dice = input().split('d')
+# add input validation - regex? int'd'int
+#    dice = input("Enter the dice as xdy, eg 4d6: ").split('d')
+    dice_input = ''
+    while not re.match("^[0-9]*d[0-9]*$", dice_input):
+        dice_input = input("Enter the dice as xdy, eg 4d6: ")
+        print("Error: dice must be of format xdy, eg 4d6") # always printing error message
+    dice = dice_input.split('d')
     rolls = []
     for x in range(int(dice[0])):
         rolls.append(roll(int(dice[1])))
     # List comprehenion instead of for loop
-    # rolls = [random.randint(1, int(dice[1])) for rolls in range(int(dice[0]))]
+    # rolls = [roll(int(dice[1])) for rolls in range(int(dice[0]))]
     print(sum(rolls),": ", rolls)

@@ -50,3 +50,100 @@ def exponent(x, y):
 # check if answer is int
 if not ininstance(<var>, int):
     return non-int
+
+
+""" from reddit commentss
+class NonIntegralException(Exception):
+	pass
+
+def add(a, b):
+	return a + b
+
+def sub(a, b):
+	dif = 0
+	if b < a:
+		incr = 1
+	else:
+		incr = -1 # cheating
+		a, b = b, a
+	while b < a:
+		dif += incr
+		b += 1
+	return dif
+
+def mult(a, b):
+	if a < 0 and b < 0:
+		a = sub(0, a)
+		b = sub(0, b)
+	elif a < 0:
+		a, b = b, a
+	i = r = 0
+	while i < a:
+		r += b
+		i += 1
+	return r
+
+def div(a, b):
+	if b == 0:
+		raise ZeroDivisionError("Cannot divide by zero")
+	if a < 0 and b < 0:
+		a = sub(0, a)
+		b = sub(0, b)
+	if a >= 0 and b >= 0:
+		incr = 1
+	elif a < 0:
+		a = sub(0, a)
+		incr = -1
+	elif b < 0:
+		b = sub(0, b)
+		incr = -1
+	r = 0
+	old_t = 0
+	t = b
+	while a >= t:
+		old_t = t
+		t += b
+		r += incr
+	if old_t != a:
+		raise NonIntegralException("Result is not a whole number")
+	return r
+
+def exp(a, b):
+	if b < 0:
+		if a == 0:
+			raise ZeroDivisionError("Cannot divide by zero")
+		raise NonIntegralException("Result is not a whole number")
+	if b == 0:
+		return 1
+	r = a
+	i = 1
+	while i < b:
+		r = mult(r, a)
+		i += 1
+	return r
+
+operations = {
+	"+": add,
+	"-": sub,
+	"*": mult,
+	"/": div,
+	"^": exp,
+}
+
+def adding_calculate(txt):
+	a, op, b = txt.split()
+	a, b = int(a), int(b)
+	return operations[op](a, b)
+
+if __name__ == "__main__":
+	while True:
+		try:
+			print(adding_calculate(input()))
+		except KeyError as e:
+			print("Unknown operator:", e)
+		except Exception as e:
+			print(e)
+		except KeyboardInterrupt as e:
+			exit()
+
+"""
